@@ -1,0 +1,6 @@
+.idea
+vendor
+.env
+environment-settings.js
+log/
+html/images/*

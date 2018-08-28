@@ -1,0 +1,115 @@
+.navbar {
+  background: #03553e;
+}
+
+h1 {
+  font-size: 50px;
+  color: firebrick;
+  font-family: Times;
+}
+
+p {
+  padding: 5px;
+}
+
+body {
+  overflow: auto;
+  padding: 0px;
+}
+
+.description-wrapper textarea {
+  height: 400px;
+}
+
+table {
+  border-spacing: 2px;
+  border-bottom: solid 1px grey;
+}
+table tr:hover {
+  cursor: pointer;
+  background: #03553e;
+  color: #ffffff;
+}
+
+.form-row label {
+  display: inline-block;
+  font-weight: bold;
+  width: 150px;
+}
+
+.error-message {
+  font-size: 15px;
+  color: firebrick;
+}
+
+#createBookForm input:required:invalid, #createBookForm textarea:required:invalid {
+  border-right: solid 2px red;
+}
+#createBookForm input:required:valid, #createBookForm textarea:required:valid {
+  border-right: solid 2px green;
+}
+#createBookForm input:optional, #createBookForm textarea:optional {
+  border-right: solid 2px grey;
+}
+
+.form-row {
+  margin-bottom: 10px;
+}
+
+.form-description {
+  margin-top: 50px;
+}
+.form-description textarea {
+  width: 400px;
+  height: 200px;
+  margin-bottom: 5px;
+}
+.form-description label {
+  display: block;
+  font-weight: bold;
+}
+
+.form-submit {
+  margin-top: 20px;
+}
+
+.form-submit input {
+  font-size: 1em;
+}
+
+.detail {
+  padding-left: 55px;
+  text-align: left;
+  margin-left: 55px;
+}
+
+.book-listing {
+  margin-top: 50px;
+  width: 1000px;
+  border-spacing: 0;
+}
+
+.book-listing th {
+  text-align: left;
+  border-bottom: solid 1px grey;
+  padding: 10px;
+}
+
+.book-listing td {
+  text-align: left;
+  padding: 10px;
+}
+
+.footer {
+  margin-top: 50px;
+  font-size: 0.75em;
+  color: #555555;
+  border-top: solid 1px #555555;
+  padding-top: 10px;
+}
+
+.backgroundcolor {
+  color: #03553e;
+}
+
+/*# sourceMappingURL=main.css.map */

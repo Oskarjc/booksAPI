@@ -1,3 +1,5 @@
+<div id="listing">
+
 <h1> Book Catalog (read-only)</h1>
 
 <p>Hi, welcome to the "read-only" book catalog :-) Click on our amazing books to see their details!</p>
@@ -42,4 +44,7 @@
 
 </div>
 
+</div>
+
 <script src="js/listing.js"></script>
+

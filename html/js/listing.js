@@ -95,28 +95,42 @@ $(document).ready(() => {
                 const tableRow = document.createElement('tr');
                 tableRow.className = "tableRow";
 
-                tableRow.onclick = () => {
+              /*  tableRow.onclick = () => {
                     window.location = '?route=show&id=' + book.id;
-                };
+                };*/
 
                 const titleCol = document.createElement('td');
                 titleCol.textContent = book.title;
+                titleCol.setAttribute('class', 'titleCol');
 
                 const authorCol = document.createElement('td');
                 authorCol.textContent = book.author_id;
-                authorCol.setAttribute('class','d-none d-sm-table-cell');
+                authorCol.setAttribute('class',' authorCol d-none d-sm-table-cell');
 
                 const isbnCol = document.createElement('td');
                 isbnCol.textContent = book.isbn;
-                isbnCol.setAttribute('class','d-none d-sm-table-cell');
+                isbnCol.setAttribute('class','isbnCol d-none d-sm-table-cell');
 
                 const priceCol = document.createElement('td');
                 priceCol.textContent = book.price;
+                priceCol.setAttribute('class', 'priceCol');
+
+                const votediv = document.createElement('div');
+                votediv.setAttribute('class', 'votediv');
+                votediv.style.visibility = "hidden";
+                votediv.textContent = book.votes;
+
+                const iddiv = document.createElement('div');
+                iddiv.setAttribute('class', 'iddiv');
+                iddiv.style.visibility = "hidden";
+                iddiv.textContent = book.id;
 
                 tableRow.appendChild(titleCol);
                 tableRow.appendChild(authorCol);
                 tableRow.appendChild(isbnCol);
                 tableRow.appendChild(priceCol);
+                tableRow.appendChild(votediv);
+                tableRow.appendChild(iddiv);
 
                 table.appendChild(tableRow);
             });
@@ -131,13 +145,53 @@ $(document).ready(() => {
 
                     event.preventDefault();
 
+                    const maindiv = document.getElementById('listing');
+
+                    const header = document.createElement('h1');
+                    header.textContent = tableRow[i].querySelector('.titleCol').innerHTML;
+
+                    const votediv = document.createElement('div');
+                    votediv.setAttribute('class', 'votes');
+
+                    const votecount = document.createElement('div');
+                    votecount.setAttribute('class', 'vote-count');
+                    const datainput = tableRow[i].querySelector('.iddiv').innerHTML;
+                    votecount.setAttribute('data-id', datainput);
+                    votecount.textContent = tableRow[i].querySelector('.votediv').innerHTML;
+
+                    const link1 = document.createElement('a');
+                    link1.setAttribute('class','up-vote');
+                    link1.setAttribute('href', '#');
+
+                    const image1 = document.createElement('i');
+                    image1.setAttribute('class', 'fas fa-thumbs-up');
+
+                    link1.appendChild(image1);
+
+                    const link2 = document.createElement('a');
+                    link2.setAttribute('class','down-vote');
+                    link2.setAttribute('href', '#');
+
+                    const image2 = document.createElement('i');
+                    image2.setAttribute('class', 'fas fa-thumbs-down');
+
+                    link2.appendChild(image2);
+
+                    votediv.appendChild(votecount);
+
+                    votediv.appendChild(link1);
+                    votediv.appendChild(link2);
+
+
+                    while (maindiv.hasChildNodes()) {
+                        maindiv.removeChild(maindiv.firstChild);
+                    }
 
                     const test = document.createElement('p');
                     test.textContent = 'test';
 
-                    tableRow[i].appendChild(test);
-
-
+                    maindiv.appendChild(header);
+                    maindiv.appendChild(votediv);
 
 
                 })

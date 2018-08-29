@@ -20,13 +20,13 @@ class BookController extends BaseController
             $this->renderJson(200, $books);
   }
 
-  public function getBook($id) {
+  public function getBook() {
 
       $bookModel = new Book();
 
 
 
-          $book = $bookModel->one($id);
+          $book = $bookModel->one();
 
 
 

@@ -131,6 +131,7 @@ $(document).ready(() => {
                 descriptiondiv.style.display = "none";
                 descriptiondiv.textContent = book.description;
 
+
                 tableRow.appendChild(titleCol);
                 tableRow.appendChild(authorCol);
                 tableRow.appendChild(isbnCol);
@@ -256,7 +257,29 @@ $(document).ready(() => {
                     descriptiondiv.appendChild(descriptionvalue);
 
                     
+                        // --- image ---
 
+                    const imagediv = document.createElement('div');
+                    imagediv.setAttribute('class', 'col-md-6');
+
+                    const image = document.createElement('img');
+                    image.setAttribute('class', 'mb-4');
+                    image.setAttribute('width', '100%');
+                    image.setAttribute('alt', 'no image found');
+
+
+                    const imageinput = 'images/' + tableRow[i].querySelector('.iddiv').innerHTML + '.jpg';
+                    image.setAttribute('src', imageinput);
+
+                    imagediv.appendChild(image);
+
+                    bookdiv.append(authordiv);
+                    bookdiv.append(isbndiv);
+                    bookdiv.append(pricediv);
+                    bookdiv.append(descriptiondiv);
+
+                    pagediv.append(bookdiv);
+                    pagediv.append(imagediv);
 
                     while (maindiv.hasChildNodes()) {
                         maindiv.removeChild(maindiv.firstChild);
@@ -267,10 +290,8 @@ $(document).ready(() => {
 
                     maindiv.appendChild(header);
                     maindiv.appendChild(votediv);
-                    maindiv.append(authordiv);
-                    maindiv.append(isbndiv);
-                    maindiv.append(pricediv);
-                    maindiv.append(descriptiondiv);
+                    maindiv.appendChild(pagediv);
+
 
 
                 })

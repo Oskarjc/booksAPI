@@ -1,3 +1,5 @@
+<div id="maindiv">
+
 <div id="listing">
 
 <h1> Book Catalog (read-only)</h1>
@@ -34,17 +36,21 @@
 
     </table>
 
-    <?php if ($viewModel['profile']) {?>
+
+
+</div>
+
+</div>
+</div>
+
+
+<?php if ($viewModel['profile']) {?>
     <p>
         <button onclick="window.location ='?route=create'" type="button" class="btn btn-success">New book</button>
 
     </p>
 
-    <?php }?>
-
-</div>
-
-</div>
+<?php }?>
 
 <script src="js/listing.js"></script>
 

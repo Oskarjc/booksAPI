@@ -2,9 +2,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const form = document.getElementById('updateBookForm');
     const inputTitle = document.getElementById('title');
-    const inputFields = form.querySelectorAll('input, textarea');
+    const inputFields = form.querySelectorAll('.form-control');
 
     form.addEventListener('submit', (event) => {
+        event.preventDefault();
 
         for (let i = 0; i < inputFields.length; i++) {
 
@@ -16,10 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         }
 
-        event.preventDefault();
-
-
-        if (form.checkValidity()) {
+            if (form.checkValidity()) {
 
             const book = {
                 title: form.title.value,

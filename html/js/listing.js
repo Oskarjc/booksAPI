@@ -93,6 +93,7 @@ $(document).ready(() => {
 
             books.map(function(book) {
                 const tableRow = document.createElement('tr');
+                tableRow.className = "tableRow";
 
                 tableRow.onclick = () => {
                     window.location = '?route=show&id=' + book.id;
@@ -119,10 +120,38 @@ $(document).ready(() => {
 
                 table.appendChild(tableRow);
             });
+
+
+            const tableRow = document.getElementsByClassName('tableRow');
+
+
+            for (let i = 0; i < tableRow.length; i++) {
+
+                tableRow[i].addEventListener('click', (event) => {
+
+                    event.preventDefault();
+
+
+                    const test = document.createElement('p');
+                    test.textContent = 'test';
+
+                    tableRow[i].appendChild(test);
+
+
+
+
+                })
+
+            };
+
+
+
         })
         .fail((request, status, error) =>
         {
             console.log(request);
         });
+
+
 
 });

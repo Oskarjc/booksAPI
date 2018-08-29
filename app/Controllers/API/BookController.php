@@ -20,6 +20,19 @@ class BookController extends BaseController
             $this->renderJson(200, $books);
   }
 
+  public function getBook($id) {
+
+      $bookModel = new Book();
+
+
+
+          $book = $bookModel->one($id);
+
+
+
+            $this->renderJson(200, $book);
+  }
+
     public function createBook() {
       $bookModel = new Book();
 
@@ -39,10 +52,6 @@ class BookController extends BaseController
       $bookId = $bookModel->save($fields);
 
       $this->renderJson(201, $bookId);
-
-
-
-
 
     }
 

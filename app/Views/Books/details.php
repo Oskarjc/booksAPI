@@ -1,5 +1,5 @@
 
-<h1> <?php echo $viewModel['pageTitle'] ?></h1>
+<h1> <?php echo $viewModel['book']['title'] ?></h1>
 
 <div class="votes">
     <div class="vote-count"
@@ -38,7 +38,6 @@
             <form action="?route=upload-image&id=<?php echo $viewModel['book']['id'] ?>" enctype="multipart/form-data" method="post">
                 <p><b>Select image file to upload</b></p>
                 <p><input type="file" name="imageFile" id="imageFile" accept="image/*"/></p>
-                 /*--> naam is nodig ter identificatie, id is voor benadering javascript/html accept geeft aan wat voor bestand; */
                 <p><input class="btn btn-success" type="submit" value="Upload" name="submit" /></p>
             </form>
 
@@ -61,3 +60,4 @@
 </div>
 </div>
 
+<script src="js/details.js"></script>

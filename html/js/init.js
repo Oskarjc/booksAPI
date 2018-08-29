@@ -1,3 +1,7 @@
+const getBook = () => {
+    return $.get(env.api + '?route=book');
+};
+
 
 const getBooks = () => {
     return $.get(env.api + '?route=books');

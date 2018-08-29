@@ -173,6 +173,11 @@ $(document).ready(() => {
                     votecount.setAttribute('data-id', datainput);
                     votecount.textContent = tableRow[i].querySelector('.votediv').innerHTML;
 
+                    const randomIdContainer = document.createElement('p');
+                    randomIdContainer.style.display = 'none';
+                    randomIdContainer.textContent = datainput;
+                    randomIdContainer.setAttribute('id', 'randomId');
+
                     const link1 = document.createElement('a');
                     link1.setAttribute('class', 'up-vote');
                     link1.setAttribute('href', '#');
@@ -273,13 +278,20 @@ $(document).ready(() => {
 
                     imagediv.appendChild(image);
 
+                        // --- delete ---
+
+                    const deleteButton = document.createElement('button');
+                    deleteButton.textContent = 'Delete';
+
                     bookdiv.append(authordiv);
                     bookdiv.append(isbndiv);
                     bookdiv.append(pricediv);
                     bookdiv.append(descriptiondiv);
+                    bookdiv.append(deleteButton);
 
                     pagediv.append(bookdiv);
-                    pagediv.append(imagediv);
+                    pagediv.append(imagediv)
+                    pagediv.append(randomIdContainer);
 
                     while (maindiv.hasChildNodes()) {
                         maindiv.removeChild(maindiv.firstChild);
@@ -292,12 +304,32 @@ $(document).ready(() => {
                     maindiv.appendChild(votediv);
                     maindiv.appendChild(pagediv);
 
+                    deleteButton.addEventListener('click', (event) => {
+
+                    const id = {
+
+                        id: document.getElementById("randomId").innerHTML
+                    };
+
+                        deleteBook(id)
+                            .done((data, text)  => {
+
+                            appendSuccesMessage('Book successfully deleted!','.message-container');
+                            window.location = "?route=index";
+                        })
+                            .fail((request, status, error) => {
+
+                                console.log(request)
+                            });
+
+                    });
+
 
 
                 })
 
-            }
-            ;
+            };
+
 
 
         })

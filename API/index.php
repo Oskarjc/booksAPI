@@ -43,6 +43,11 @@ else if ($route === 'book' && $method === 'GET') {
     $bookController->getBook($id);
 }
 
+else if ($route === 'delete' && $method === 'POST') {
+    $bookController = new BookController();
+    $bookController->deleteBook();
+}
+
 else if ($route === 'votes')
 {
     $bookVoteController = new BookVoteController();

@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     form.reset();
 
                     appendSuccesMessage('Book successfully updated!','.message-container');
-                    window.location = "?route=show&id=" + JSON.parse(data);
+                    window.location = "?route=index" + JSON.parse(data);
                 })
                 .fail((request, status, error) => {
 

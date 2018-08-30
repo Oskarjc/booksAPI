@@ -15,8 +15,6 @@ class BookController extends BaseController
 
           $books = $bookModel->all();
 
-
-
             $this->renderJson(200, $books);
   }
 
@@ -24,16 +22,15 @@ class BookController extends BaseController
 
       $bookModel = new Book();
 
-      $previd = json_decode(file_get_contents("php//input"));
+      $previd = json_decode(file_get_contents("php://input"));
 
       $id = $previd->id;
 
           $book = $bookModel->delete($id);
 
-
-
-           // $this->renderJson(200, $book);
+            $this->renderJson(200, $book);
   }
+
 
     public function createBook() {
       $bookModel = new Book();

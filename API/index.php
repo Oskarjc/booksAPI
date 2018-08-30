@@ -20,7 +20,6 @@ $route = $_GET['route'] ?? 'index';
 $id = $_GET['id'] ?? null;
 $method = $_SERVER['REQUEST_METHOD'];
 
-try {
 
 
 if ($route === 'books' && $method === 'GET') {
@@ -36,6 +35,11 @@ else if ($route === 'create' && $method === 'POST') {
 else if ($route === 'update' && $method === 'POST') {
     $bookController = new BookController();
     $bookController->updateBook();
+}
+
+else if ($route === 'edit') {
+    $bookController = new BookController();
+    $bookController->editBook();
 }
 
 else if ($route === 'book' && $method === 'GET') {
@@ -64,7 +68,4 @@ else if ($route === 'votes')
         $bookVoteController->destroy($id);
     }
 }
-}
-catch (Exception $exception) {
-    http_response_code(500);
-}
+

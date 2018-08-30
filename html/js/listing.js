@@ -147,6 +147,8 @@ $(document).ready(() => {
             const tableRow = document.getElementsByClassName('tableRow');
 
 
+            // --- Detailpagina ---
+
             for (let i = 0; i < tableRow.length; i++) {
 
                 tableRow[i].addEventListener('click', (event) => {
@@ -173,10 +175,10 @@ $(document).ready(() => {
                     votecount.setAttribute('data-id', datainput);
                     votecount.textContent = tableRow[i].querySelector('.votediv').innerHTML;
 
-                    const randomIdContainer = document.createElement('p');
-                    randomIdContainer.style.display = 'none';
-                    randomIdContainer.textContent = datainput;
-                    randomIdContainer.setAttribute('id', 'randomId');
+                    const idContainer = document.createElement('p');
+                    idContainer.style.display = 'none';
+                    idContainer.textContent = datainput;
+                    idContainer.setAttribute('id', 'randomId');
 
                     const link1 = document.createElement('a');
                     link1.setAttribute('class', 'up-vote');
@@ -209,7 +211,7 @@ $(document).ready(() => {
                     const bookdiv = document.createElement('div');
                     bookdiv.setAttribute('class', 'col-md-6');
 
-                        // --- author ---
+                    // --- author ---
 
                     const authordiv = document.createElement('div');
 
@@ -222,7 +224,7 @@ $(document).ready(() => {
                     authordiv.appendChild(authorheader);
                     authordiv.appendChild(authorvalue);
 
-                        // --- isbn ---
+                    // --- isbn ---
 
                     const isbndiv = document.createElement('div');
 
@@ -236,7 +238,7 @@ $(document).ready(() => {
                     isbndiv.appendChild(isbnvalue);
 
 
-                        // --- price ---
+                    // --- price ---
 
                     const pricediv = document.createElement('div');
 
@@ -249,7 +251,7 @@ $(document).ready(() => {
                     pricediv.appendChild(priceheader);
                     pricediv.appendChild(pricevalue);
 
-                        // --- description ---
+                    // --- description ---
                     const descriptiondiv = document.createElement('div');
 
                     const descriptionheader = document.createElement('b');
@@ -261,8 +263,8 @@ $(document).ready(() => {
                     descriptiondiv.appendChild(descriptionheader);
                     descriptiondiv.appendChild(descriptionvalue);
 
-                    
-                        // --- image ---
+
+                    // --- image ---
 
                     const imagediv = document.createElement('div');
                     imagediv.setAttribute('class', 'col-md-6');
@@ -278,27 +280,45 @@ $(document).ready(() => {
 
                     imagediv.appendChild(image);
 
-                        // --- delete ---
+                    // --- buttondiv ---
+
+                    const buttondiv = document.createElement('div');
+                    buttondiv.setAttribute('class', 'buttondiv');
+                    buttondiv.setAttribute('overflow', 'hidden');
+                    buttondiv.setAttribute('white-space', 'nowrap');
+
+                    // --- delete ---
 
                     const deleteButton = document.createElement('button');
                     deleteButton.textContent = 'Delete';
+                    deleteButton.setAttribute('class', 'btn btn-danger');
+                    deleteButton.style = 'float:right'
+
+                    // --- editbutton ---
+
+                    const editButton = document.createElement('button');
+                    editButton.textContent = 'Edit';
+                    editButton.setAttribute('class', 'btn btn-success');
+
+                    buttondiv.appendChild(editButton);
+                    buttondiv.appendChild(deleteButton);
 
                     bookdiv.append(authordiv);
                     bookdiv.append(isbndiv);
                     bookdiv.append(pricediv);
                     bookdiv.append(descriptiondiv);
-                    bookdiv.append(deleteButton);
+                    bookdiv.append(buttondiv);
+
 
                     pagediv.append(bookdiv);
                     pagediv.append(imagediv)
-                    pagediv.append(randomIdContainer);
+                    pagediv.append(idContainer);
+
 
                     while (maindiv.hasChildNodes()) {
                         maindiv.removeChild(maindiv.firstChild);
                     }
 
-                    const test = document.createElement('p');
-                    test.textContent = 'test';
 
                     maindiv.appendChild(header);
                     maindiv.appendChild(votediv);
@@ -306,17 +326,17 @@ $(document).ready(() => {
 
                     deleteButton.addEventListener('click', (event) => {
 
-                    const id = {
+                        const id = {
 
-                        id: document.getElementById("randomId").innerHTML
-                    };
+                            id: document.getElementById("randomId").innerHTML
+                        };
 
                         deleteBook(id)
-                            .done((data, text)  => {
+                            .done((data, text) => {
 
-                            appendSuccesMessage('Book successfully deleted!','.message-container');
-                            window.location = "?route=index";
-                        })
+                                appendSuccesMessage('Book successfully deleted!', '.message-container');
+                                window.location = "?route=index";
+                            })
                             .fail((request, status, error) => {
 
                                 console.log(request)
@@ -324,12 +344,203 @@ $(document).ready(() => {
 
                     });
 
+                    // --- Editpagina ---
+
+
+                    editButton.addEventListener('click', (event) => {
+
+                        const id = {
+
+                            id: document.getElementById("randomId").innerHTML
+                        };
+
+                        event.preventDefault();
+
+                        // --- header ---
+
+                        const editHeader = document.createElement('h1');
+                        editHeader.textContent = 'Edit book';
+
+                        // --- form ---
+
+                        const form = document.createElement('form');
+                        form.noValidate = true;
+                        form.setAttribute('id', 'updateBookForm');
+
+                        // --- title ---
+
+                        const titleDiv = document.createElement('div');
+                        titleDiv.setAttribute('class', 'form-group');
+
+                            const titleLabel = document.createElement('label');
+                            titleLabel.setAttribute('for', 'title');
+                            titleLabel.textContent = 'Title:';
+
+                            const titleInput = document.createElement('input');
+                            titleInput.setAttribute('type', 'text');
+                            titleInput.setAttribute('name', 'title');
+                            titleInput.setAttribute('id', 'title');
+                            titleInput.setAttribute('class', 'form-control');
+                            titleInput.setAttribute('value', header.innerHTML);
+                            titleInput.required = true;
+
+                        titleDiv.appendChild(titleLabel);
+                        titleDiv.appendChild(titleInput);
+
+                        form.appendChild(titleDiv);
+
+                        // --- author ---
+
+                        const authorDiv = document.createElement('div');
+                        titleDiv.setAttribute('class', 'form-group');
+
+                            const authorLabel = document.createElement('label');
+                            authorLabel.setAttribute('for', 'author');
+                            authorLabel.textContent = 'Author:';
+
+                            const authorInput = document.createElement('input');
+                            authorInput.setAttribute('type', 'number');
+                            authorInput.setAttribute('name', 'author');
+                            authorInput.setAttribute('id', 'author');
+                            authorInput.setAttribute('class', 'form-control');
+                            authorInput.setAttribute('value', authorvalue.innerHTML);
+                            authorInput.setAttribute('min', 1);
+                            authorInput.required = true;
+
+                        authorDiv.appendChild(authorLabel);
+                        authorDiv.appendChild(authorInput);
+
+                        form.appendChild(authorDiv);
+
+
+                        // --- isbn ---
+
+                        const isbnDiv = document.createElement('div');
+                        isbnDiv.setAttribute('class', 'form-group');
+
+                            const isbnLabel = document.createElement('label');
+                            isbnLabel.setAttribute('for', 'isbn');
+                            isbnLabel.textContent = 'ISBN:';
+
+                            const isbnInput = document.createElement('input');
+                            isbnInput.setAttribute('type', 'text');
+                            isbnInput.setAttribute('name', 'isbn');
+                            isbnInput.setAttribute('id', 'isbn');
+                            isbnInput.setAttribute('class', 'form-control');
+                            isbnInput.setAttribute('value', isbnvalue.innerHTML);
+                            isbnInput.setAttribute('pattern', "^\\d{10,13}$");
+                            isbnInput.required = true;
+
+                        isbnDiv.appendChild(isbnLabel);
+                        isbnDiv.appendChild(isbnInput);
+
+                        form.appendChild(isbnDiv);
+
+                        // --- price ---
+
+                        const priceDiv = document.createElement('div');
+                        priceDiv.setAttribute('class', 'form-group');
+
+                            const priceLabel = document.createElement('label');
+                            priceLabel.setAttribute('for', 'price');
+                            priceLabel.textContent = 'Price:';
+
+                            const priceInput = document.createElement('input');
+                            priceInput.setAttribute('type', 'text');
+                            priceInput.setAttribute('name', 'price');
+                            priceInput.setAttribute('id', 'price');
+                            priceInput.setAttribute('class', 'form-control');
+                            priceInput.setAttribute('value', pricevalue.innerHTML);
+                            priceInput.setAttribute('pattern', "^\\d{1,5}(\\.\\d{1,2})?$");
+
+                        priceInput.required = true;
+
+                        priceDiv.appendChild(priceLabel);
+                        priceDiv.appendChild(priceInput);
+
+                        form.appendChild(priceDiv);
+
+
+                        // --- category ---
+
+                        const categoryDiv = document.createElement('div');
+                        categoryDiv.setAttribute('class', 'form-group');
+
+                            const categoryLabel = document.createElement('label');
+                            categoryLabel.setAttribute('for', 'category_id');
+                            categoryLabel.textContent = 'Category:';
+
+                            const categoryInput = document.createElement('input');
+                            categoryInput.setAttribute('type', 'number');
+                            categoryInput.setAttribute('name', 'category_id');
+                            categoryInput.setAttribute('id', 'category_id');
+                            categoryInput.setAttribute('class', 'form-control');
+                        //    categoryInput.setAttribute('value', header.innerHTML);
+                            categoryInput.setAttribute('min', 1);
+                            categoryInput.required = true;
+
+                        categoryDiv.appendChild(categoryLabel);
+                        categoryDiv.appendChild(categoryInput);
+
+                        form.appendChild(categoryDiv);
+
+
+                        // --- description ---
+
+                        const descriptionDiv = document.createElement('div');
+                        descriptionDiv.setAttribute('class', 'form-group');
+
+                            const descriptionLabel = document.createElement('label');
+                            descriptionLabel.setAttribute('for', 'description');
+                            descriptionLabel.textContent = 'Description:';
+
+                            const descriptionInput = document.createElement('textarea');
+                            descriptionInput.setAttribute('name', 'description');
+                            descriptionInput.setAttribute('id', 'description');
+                            descriptionInput.setAttribute('class', 'form-control');
+                            descriptionInput.textContent = descriptionvalue.innerHTML;
+                            descriptionInput.required = true;
+
+                        descriptionDiv.appendChild(descriptionLabel);
+                        descriptionDiv.appendChild(descriptionInput);
+
+                        form.appendChild(descriptionDiv);
+
+
+                        // --- button ---
+
+                        const buttonDiv = document.createElement('div');
+
+                        const submitButton = document.createElement('button');
+                        submitButton.textContent = 'Opslaan';
+                        submitButton.setAttribute('class', 'btn btn-success');
+
+                        buttonDiv.appendChild(submitButton);
+
+                        form.appendChild(buttonDiv);
+
+                        // --- script ---
+
+                        const scriptTag = document.createElement('script');
+                        scriptTag.setAttribute('src', 'js/update-book.js');
+
+
+                        while (maindiv.hasChildNodes()) {
+                            maindiv.removeChild(maindiv.firstChild);
+                        }
+
+                        maindiv.append(editHeader);
+                        maindiv.append(form);
+                        maindiv.append(scriptTag);
+
+
+                    });
 
 
                 })
 
-            };
-
+            }
+            ;
 
 
         })

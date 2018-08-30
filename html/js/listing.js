@@ -372,17 +372,17 @@ $(document).ready(() => {
                         const titleDiv = document.createElement('div');
                         titleDiv.setAttribute('class', 'form-group');
 
-                            const titleLabel = document.createElement('label');
-                            titleLabel.setAttribute('for', 'title');
-                            titleLabel.textContent = 'Title:';
+                        const titleLabel = document.createElement('label');
+                        titleLabel.setAttribute('for', 'title');
+                        titleLabel.textContent = 'Title:';
 
-                            const titleInput = document.createElement('input');
-                            titleInput.setAttribute('type', 'text');
-                            titleInput.setAttribute('name', 'title');
-                            titleInput.setAttribute('id', 'title');
-                            titleInput.setAttribute('class', 'form-control');
-                            titleInput.setAttribute('value', header.innerHTML);
-                            titleInput.required = true;
+                        const titleInput = document.createElement('input');
+                        titleInput.setAttribute('type', 'text');
+                        titleInput.setAttribute('name', 'title');
+                        titleInput.setAttribute('id', 'title');
+                        titleInput.setAttribute('class', 'form-control');
+                        titleInput.setAttribute('value', header.innerHTML);
+                        titleInput.required = true;
 
                         titleDiv.appendChild(titleLabel);
                         titleDiv.appendChild(titleInput);
@@ -392,20 +392,20 @@ $(document).ready(() => {
                         // --- author ---
 
                         const authorDiv = document.createElement('div');
-                        titleDiv.setAttribute('class', 'form-group');
+                        authorDiv.setAttribute('class', 'form-group');
 
-                            const authorLabel = document.createElement('label');
-                            authorLabel.setAttribute('for', 'author');
-                            authorLabel.textContent = 'Author:';
+                        const authorLabel = document.createElement('label');
+                        authorLabel.setAttribute('for', 'author');
+                        authorLabel.textContent = 'Author:';
 
-                            const authorInput = document.createElement('input');
-                            authorInput.setAttribute('type', 'number');
-                            authorInput.setAttribute('name', 'author');
-                            authorInput.setAttribute('id', 'author');
-                            authorInput.setAttribute('class', 'form-control');
-                            authorInput.setAttribute('value', authorvalue.innerHTML);
-                            authorInput.setAttribute('min', 1);
-                            authorInput.required = true;
+                        const authorInput = document.createElement('input');
+                        authorInput.setAttribute('type', 'number');
+                        authorInput.setAttribute('name', 'author_id');
+                        authorInput.setAttribute('id', 'author_id');
+                        authorInput.setAttribute('class', 'form-control');
+                        authorInput.setAttribute('value', authorvalue.innerHTML);
+                        authorInput.setAttribute('min', 1);
+                        authorInput.required = true;
 
                         authorDiv.appendChild(authorLabel);
                         authorDiv.appendChild(authorInput);
@@ -418,18 +418,18 @@ $(document).ready(() => {
                         const isbnDiv = document.createElement('div');
                         isbnDiv.setAttribute('class', 'form-group');
 
-                            const isbnLabel = document.createElement('label');
-                            isbnLabel.setAttribute('for', 'isbn');
-                            isbnLabel.textContent = 'ISBN:';
+                        const isbnLabel = document.createElement('label');
+                        isbnLabel.setAttribute('for', 'isbn');
+                        isbnLabel.textContent = 'ISBN:';
 
-                            const isbnInput = document.createElement('input');
-                            isbnInput.setAttribute('type', 'text');
-                            isbnInput.setAttribute('name', 'isbn');
-                            isbnInput.setAttribute('id', 'isbn');
-                            isbnInput.setAttribute('class', 'form-control');
-                            isbnInput.setAttribute('value', isbnvalue.innerHTML);
-                            isbnInput.setAttribute('pattern', "^\\d{10,13}$");
-                            isbnInput.required = true;
+                        const isbnInput = document.createElement('input');
+                        isbnInput.setAttribute('type', 'text');
+                        isbnInput.setAttribute('name', 'isbn');
+                        isbnInput.setAttribute('id', 'isbn');
+                        isbnInput.setAttribute('class', 'form-control');
+                        isbnInput.setAttribute('value', isbnvalue.innerHTML);
+                        isbnInput.setAttribute('pattern', "^\\d{10,13}$");
+                        isbnInput.required = true;
 
                         isbnDiv.appendChild(isbnLabel);
                         isbnDiv.appendChild(isbnInput);
@@ -441,17 +441,17 @@ $(document).ready(() => {
                         const priceDiv = document.createElement('div');
                         priceDiv.setAttribute('class', 'form-group');
 
-                            const priceLabel = document.createElement('label');
-                            priceLabel.setAttribute('for', 'price');
-                            priceLabel.textContent = 'Price:';
+                        const priceLabel = document.createElement('label');
+                        priceLabel.setAttribute('for', 'price');
+                        priceLabel.textContent = 'Price:';
 
-                            const priceInput = document.createElement('input');
-                            priceInput.setAttribute('type', 'text');
-                            priceInput.setAttribute('name', 'price');
-                            priceInput.setAttribute('id', 'price');
-                            priceInput.setAttribute('class', 'form-control');
-                            priceInput.setAttribute('value', pricevalue.innerHTML);
-                            priceInput.setAttribute('pattern', "^\\d{1,5}(\\.\\d{1,2})?$");
+                        const priceInput = document.createElement('input');
+                        priceInput.setAttribute('type', 'text');
+                        priceInput.setAttribute('name', 'price');
+                        priceInput.setAttribute('id', 'price');
+                        priceInput.setAttribute('class', 'form-control');
+                        priceInput.setAttribute('value', pricevalue.innerHTML);
+                        priceInput.setAttribute('pattern', "^\\d{1,5}(\\.\\d{1,2})?$");
 
                         priceInput.required = true;
 
@@ -462,27 +462,26 @@ $(document).ready(() => {
 
 
                         // --- category ---
+                        /*
+                                                const categoryDiv = document.createElement('div');
+                                                categoryDiv.setAttribute('class', 'form-group');
 
-                        const categoryDiv = document.createElement('div');
-                        categoryDiv.setAttribute('class', 'form-group');
+                                                    const categoryLabel = document.createElement('label');
+                                                    categoryLabel.setAttribute('for', 'category_id');
+                                                    categoryLabel.textContent = 'Category:';
 
-                            const categoryLabel = document.createElement('label');
-                            categoryLabel.setAttribute('for', 'category_id');
-                            categoryLabel.textContent = 'Category:';
+                                                    const categoryInput = document.createElement('input');
+                                                    categoryInput.setAttribute('type', 'number');
+                                                    categoryInput.setAttribute('name', 'category_id');
+                                                    categoryInput.setAttribute('id', 'category_id');
+                                                    categoryInput.setAttribute('class', 'form-control');
+                                                    categoryInput.setAttribute('value', header.innerHTML);
+                                                    categoryInput.setAttribute('min', 1);
 
-                            const categoryInput = document.createElement('input');
-                            categoryInput.setAttribute('type', 'number');
-                            categoryInput.setAttribute('name', 'category_id');
-                            categoryInput.setAttribute('id', 'category_id');
-                            categoryInput.setAttribute('class', 'form-control');
-                        //    categoryInput.setAttribute('value', header.innerHTML);
-                            categoryInput.setAttribute('min', 1);
-                            categoryInput.required = true;
+                                                categoryDiv.appendChild(categoryLabel);
+                                                categoryDiv.appendChild(categoryInput);
 
-                        categoryDiv.appendChild(categoryLabel);
-                        categoryDiv.appendChild(categoryInput);
-
-                        form.appendChild(categoryDiv);
+                                                form.appendChild(categoryDiv);*/
 
 
                         // --- description ---
@@ -490,22 +489,32 @@ $(document).ready(() => {
                         const descriptionDiv = document.createElement('div');
                         descriptionDiv.setAttribute('class', 'form-group');
 
-                            const descriptionLabel = document.createElement('label');
-                            descriptionLabel.setAttribute('for', 'description');
-                            descriptionLabel.textContent = 'Description:';
+                        const descriptionLabel = document.createElement('label');
+                        descriptionLabel.setAttribute('for', 'description');
+                        descriptionLabel.textContent = 'Description:';
 
-                            const descriptionInput = document.createElement('textarea');
-                            descriptionInput.setAttribute('name', 'description');
-                            descriptionInput.setAttribute('id', 'description');
-                            descriptionInput.setAttribute('class', 'form-control');
-                            descriptionInput.textContent = descriptionvalue.innerHTML;
-                            descriptionInput.required = true;
+                        const descriptionInput = document.createElement('textarea');
+                        descriptionInput.setAttribute('name', 'description');
+                        descriptionInput.setAttribute('id', 'description');
+                        descriptionInput.setAttribute('class', 'form-control');
+                        descriptionInput.textContent = descriptionvalue.innerHTML;
 
                         descriptionDiv.appendChild(descriptionLabel);
                         descriptionDiv.appendChild(descriptionInput);
 
                         form.appendChild(descriptionDiv);
 
+                        // --- idcontainer ---
+
+                        const tempId = idContainer.innerHTML;
+
+                        const idHiddenInput = document.createElement('input');
+                        idHiddenInput.style.display = 'none';
+                        idHiddenInput.setAttribute('name', 'id');
+                        idHiddenInput.setAttribute('id', 'id');
+                        idHiddenInput.setAttribute('value', tempId);
+
+                        form.appendChild(idHiddenInput);
 
                         // --- button ---
 
@@ -531,7 +540,70 @@ $(document).ready(() => {
 
                         maindiv.append(editHeader);
                         maindiv.append(form);
-                        maindiv.append(scriptTag);
+//                        maindiv.append(scriptTag);
+
+
+                        const formselect = document.getElementById('updateBookForm');
+                        const inputTitle = document.getElementById('title');
+                        const inputFields = form.querySelectorAll('.form-control');
+
+                        formselect.addEventListener('submit', (event) => {
+                            event.preventDefault();
+
+                            for (let i = 0; i < inputFields.length; i++) {
+
+                                if (!inputFields[i].checkValidity()) {
+                                    addErrorMessageForElement(inputFields[i]);
+                                } else {
+                                    clearErrorMessageForElement(inputFields[i])
+                                }
+
+                            }
+
+                            if (formselect.checkValidity()) {
+
+                                const book = {
+                                    title: formselect.title.value,
+                                    author_id: formselect.author_id.value,
+                                    /*category_id: formselect.category_id.value,*/
+                                    isbn: formselect.isbn.value,
+                                    price: formselect.price.value,
+                                    description: formselect.description.value,
+                                    id: formselect.id.value
+
+                                };
+
+                                updateBook(book)
+                                    .done((data, text) => {
+                                        formselect.reset();
+
+                                        appendSuccesMessage('Book successfully updated!', '.message-container');
+                                        window.location = "?route=show&id=" + JSON.parse(data);
+                                    })
+                                    .fail((request, status, error) => {
+
+                                        console.log(request)
+                                    });
+                            }
+                        });
+
+                        //"Location: ?route=show&id=" + book.id;
+
+                        inputTitle.addEventListener('blur', (event) => {
+                            if (event.target.value.length < 6 && event.target.value.length > 0) {
+                                event.target.setCustomValidity('Lekker is 6 karakters')
+
+                            } else {
+                                event.target.setCustomValidity('');
+                            }
+
+                        });
+
+
+                        for (let i = 0; i < inputFields.length; i++) {
+                            inputFields[i].addEventListener('blur', fieldValidation);
+
+                        }
 
 
                     });

@@ -1,4 +1,6 @@
+/*
 document.addEventListener('DOMContentLoaded', () => {
+*/
 
     const form = document.getElementById('updateBookForm');
     const inputTitle = document.getElementById('title');
@@ -66,4 +68,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-});
+/*
+});*/

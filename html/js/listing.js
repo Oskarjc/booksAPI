@@ -104,7 +104,7 @@ $(document).ready(() => {
                 titleCol.setAttribute('class', 'titleCol');
 
                 const authorCol = document.createElement('td');
-                authorCol.textContent = book.author_id;
+                authorCol.textContent = book.author;
                 authorCol.setAttribute('class', ' authorCol d-none d-sm-table-cell');
 
                 const isbnCol = document.createElement('td');
@@ -125,6 +125,21 @@ $(document).ready(() => {
                 iddiv.style.display = "none";
                 iddiv.textContent = book.id;
 
+                const categoryCol = document.createElement('div');
+                categoryCol.setAttribute('class', 'categoryCol');
+                categoryCol.style.display = "none";
+                categoryCol.textContent = book.category;
+
+                const category_iddiv = document.createElement('div');
+                category_iddiv.setAttribute('class', 'category_iddiv');
+                category_iddiv.style.display = "none";
+                category_iddiv.textContent = book.category_id;
+
+                const author_iddiv = document.createElement('div');
+                author_iddiv.setAttribute('class', 'author_iddiv');
+                author_iddiv.style.display = "none";
+                author_iddiv.textContent = book.author_id;
+
 
                 const descriptiondiv = document.createElement('div');
                 descriptiondiv.setAttribute('class', 'descriptionCol');
@@ -139,6 +154,9 @@ $(document).ready(() => {
                 tableRow.appendChild(votediv);
                 tableRow.appendChild(iddiv);
                 tableRow.appendChild(descriptiondiv);
+                tableRow.appendChild(categoryCol);
+                tableRow.appendChild(author_iddiv);
+                tableRow.appendChild(category_iddiv);
 
                 table.appendChild(tableRow);
             });
@@ -219,10 +237,36 @@ $(document).ready(() => {
                     authorheader.append('Author:');
 
                     const authorvalue = document.createElement('p');
+                    const authorid = document.createElement('p');
+                    const authoridheader = document.createElement('p')
+                    authoridheader.append('Author ID: ');
+                    authorid.append(tableRow[i].querySelector('.author_iddiv').innerHTML);
                     authorvalue.append(tableRow[i].querySelector('.authorCol').innerHTML);
 
                     authordiv.appendChild(authorheader);
                     authordiv.appendChild(authorvalue);
+                    authordiv.appendChild(authoridheader);
+                    authordiv.appendChild(authorid);
+
+                    // --- category ---
+
+                    const categorydiv = document.createElement('div');
+
+                    const categoryheader = document.createElement('b');
+                    categoryheader.append('Category:');
+
+                    const categoryvalue = document.createElement('p');
+                    const categoryid = document.createElement('p');
+                    const categoryidheader = document.createElement('p');
+                    categoryidheader.append('Category ID: ');
+                    categoryid.append(tableRow[i].querySelector('.category_iddiv').innerHTML);
+                    categoryvalue.append(tableRow[i].querySelector('.categoryCol').innerHTML);
+
+                    categorydiv.appendChild(categoryheader);
+                    categorydiv.appendChild(categoryvalue);
+                    categorydiv.appendChild(categoryidheader);
+                    categorydiv.appendChild(categoryid);
+
 
                     // --- isbn ---
 
@@ -306,6 +350,7 @@ $(document).ready(() => {
                     bookdiv.append(authordiv);
                     bookdiv.append(isbndiv);
                     bookdiv.append(pricediv);
+                    bookdiv.append(categorydiv);
                     bookdiv.append(descriptiondiv);
                     bookdiv.append(buttondiv);
 
@@ -400,11 +445,12 @@ $(document).ready(() => {
 
                         const authorInput = document.createElement('input');
                         authorInput.setAttribute('type', 'number');
-                        authorInput.setAttribute('name', 'author_id');
-                        authorInput.setAttribute('id', 'author_id');
+                        authorInput.setAttribute('name', 'author');
+                        authorInput.setAttribute('id', 'author');
                         authorInput.setAttribute('class', 'form-control');
-                        authorInput.setAttribute('value', authorvalue.innerHTML);
+                        authorInput.setAttribute('value', authorid.innerHTML);
                         authorInput.setAttribute('min', 1);
+
                         authorInput.required = true;
 
                         authorDiv.appendChild(authorLabel);
@@ -462,26 +508,26 @@ $(document).ready(() => {
 
 
                         // --- category ---
-                        /*
-                                                const categoryDiv = document.createElement('div');
-                                                categoryDiv.setAttribute('class', 'form-group');
 
-                                                    const categoryLabel = document.createElement('label');
-                                                    categoryLabel.setAttribute('for', 'category_id');
-                                                    categoryLabel.textContent = 'Category:';
+                        const categoryDiv = document.createElement('div');
+                        categoryDiv.setAttribute('class', 'form-group');
 
-                                                    const categoryInput = document.createElement('input');
-                                                    categoryInput.setAttribute('type', 'number');
-                                                    categoryInput.setAttribute('name', 'category_id');
-                                                    categoryInput.setAttribute('id', 'category_id');
-                                                    categoryInput.setAttribute('class', 'form-control');
-                                                    categoryInput.setAttribute('value', header.innerHTML);
-                                                    categoryInput.setAttribute('min', 1);
+                            const categoryLabel = document.createElement('label');
+                            categoryLabel.setAttribute('for', 'category_id');
+                            categoryLabel.textContent = 'Category:';
 
-                                                categoryDiv.appendChild(categoryLabel);
-                                                categoryDiv.appendChild(categoryInput);
+                            const categoryInput = document.createElement('input');
+                            categoryInput.setAttribute('type', 'number');
+                            categoryInput.setAttribute('name', 'category_id');
+                            categoryInput.setAttribute('id', 'category_id');
+                            categoryInput.setAttribute('class', 'form-control');
+                            categoryInput.setAttribute('value', categoryid.innerHTML);
+                            categoryInput.setAttribute('min', 1);
 
-                                                form.appendChild(categoryDiv);*/
+                        categoryDiv.appendChild(categoryLabel);
+                        categoryDiv.appendChild(categoryInput);
+
+                        form.appendChild(categoryDiv);
 
 
                         // --- description ---
@@ -564,7 +610,7 @@ $(document).ready(() => {
 
                                 const book = {
                                     title: formselect.title.value,
-                                    author_id: formselect.author_id.value,
+                                    author_id: formselect.author.value,
                                     /*category_id: formselect.category_id.value,*/
                                     isbn: formselect.isbn.value,
                                     price: formselect.price.value,

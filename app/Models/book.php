@@ -6,6 +6,8 @@ namespace App\Models;
 class Book extends Database
 {
     private $table_name = "werner";
+    private $author_table = "authors";
+    private $category_table = "categories";
     private $primary_key = "id";
     private $fillable_columns = [
         'category_id',
@@ -22,7 +24,11 @@ class Book extends Database
 
     public function all($where = [], $group_by = [], $order_by = [], $start_row = [], $limit = 1)
     {
-        return $this->getAll("SELECT * FROM {$this->table_name};");
+        return $this->getAll("SELECT {$this->table_name}.*, 
+                                      {$this->author_table}.name AS author,
+                                      {$this->category_table}.name AS category FROM {$this->table_name}
+                                      JOIN {$this->author_table} ON {$this->table_name}.author_id = {$this->author_table}.id 
+                                      JOIN {$this->category_table} ON {$this->table_name}.category_id = {$this->category_table}.id ;");
     }
 
     public function one($id = 0)

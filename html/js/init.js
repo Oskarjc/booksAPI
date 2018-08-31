@@ -1,5 +1,5 @@
 const getBook = () => {
-    return $.get(env.api + '?route=book');
+    return $.get(env.api + '?route=books');
 };
 
 

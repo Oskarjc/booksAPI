@@ -239,6 +239,8 @@ $(document).ready(() => {
 
                     const authorvalue = document.createElement('p');
                     authorvalue.append(tableRow[i].querySelector('.authorCol').innerHTML);
+                    authorvalue.setAttribute('id','authorValueContainer');
+
 
                     authordiv.appendChild(authorheader);
                     authordiv.appendChild(authorvalue);
@@ -252,8 +254,9 @@ $(document).ready(() => {
                     categoryheader.append('Category:');
 
                     const categoryvalue = document.createElement('p');
-
+                    categoryvalue.setAttribute('id','categoryValueContainer');
                     categoryvalue.append(tableRow[i].querySelector('.categoryCol').innerHTML);
+
 
                     categorydiv.appendChild(categoryheader);
                     categorydiv.appendChild(categoryvalue);
@@ -380,10 +383,15 @@ $(document).ready(() => {
 
                     });
 
+
+                    localStorage.setItem("categoryValue", document.getElementById('categoryValueContainer').innerHTML);
+                    localStorage.setItem("authorValue", document.getElementById('authorValueContainer').innerHTML);
+
                     // --- Editpagina ---
 
 
                     editButton.addEventListener('click', (event) => {
+
 
                         const id = {
 
@@ -440,21 +448,23 @@ $(document).ready(() => {
 
                                 let authors = JSON.parse(data);
 
-                                const authorInput = document.createElement('p');
                                 const authorSelectField = document.createElement('select');
-                                authorInput.setAttribute('id', 'author');
-                                authorInput.setAttribute('name', 'author');
-                                authorInput.appendChild(authorSelectField);
+                                authorSelectField.setAttribute('id', 'author');
+                                authorSelectField.setAttribute('name', 'author');
 
 
                                 for (i = 0; i < authors.length; i++) {
                                     let authorSelect = document.createElement('option');
                                     authorSelect.textContent = authors[i].name;
                                     authorSelect.setAttribute('value', authors[i].id)
+                                    authorSelect.setAttribute('name', 'author');
+                                    if (authorSelect.innerHTML === localStorage.getItem('authorValue')) {
+                                        authorSelect.setAttribute('selected', true);
+                                    }
                                     authorSelectField.appendChild(authorSelect);
                                 }
                                 authorDiv.appendChild(authorLabel);
-                                authorDiv.appendChild(authorInput);
+                                authorDiv.appendChild(authorSelectField);
 
 
                             })
@@ -519,30 +529,33 @@ $(document).ready(() => {
                         categoryDiv.setAttribute('class', 'form-group');
 
                         const categoryLabel = document.createElement('label');
-                        categoryLabel.setAttribute('for', 'category_id');
+                        categoryLabel.setAttribute('for', 'category');
                         categoryLabel.textContent = 'Category: ';
 
-                        // option variabelen voor edit book functie
 
                         getCategories()
                             .done((data, text) => {
 
                                 let categories = JSON.parse(data);
 
-                                const categoryInput = document.createElement('p');
                                 const categorySelectField = document.createElement('select');
-                                categoryInput.setAttribute('id', 'author');
-                                categoryInput.setAttribute('name', 'author');
-                                categoryInput.appendChild(categorySelectField);
+                                categorySelectField.setAttribute('id', 'category');
+                                categorySelectField.setAttribute('name', 'category');
+
 
                                 for (i = 0; i < categories.length; i++) {
                                     let categorySelect = document.createElement('option');
                                     categorySelect.textContent = categories[i].name;
                                     categorySelect.setAttribute('value', categories[i].id)
+                                    categorySelect.setAttribute('name', 'category');
+                                   if (categorySelect.innerHTML === localStorage.getItem('categoryValue')) {
+                                       categorySelect.setAttribute('selected', true);
+                                    }
+
                                     categorySelectField.appendChild(categorySelect);
                                 }
                                 categoryDiv.appendChild(categoryLabel);
-                                categoryDiv.appendChild(categoryInput);
+                                categoryDiv.appendChild(categorySelectField);
 
 
                             })
@@ -634,7 +647,7 @@ $(document).ready(() => {
                                 const book = {
                                     title: formselect.title.value,
                                     author_id: formselect.author.value,
-                                    /*category_id: formselect.category_id.value,*/
+                                    category_id: formselect.category.value,
                                     isbn: formselect.isbn.value,
                                     price: formselect.price.value,
                                     description: formselect.description.value,

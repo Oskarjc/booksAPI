@@ -60,7 +60,8 @@ class Book extends Database
            isbn = :isbn,
            description = :description,
            price = :price,
-           updated_at = :updated_at
+           updated_at = :updated_at,
+           category_id = :category_id
           WHERE {$this->primary_key} = :id
         ", $columns);
         } else {
@@ -75,7 +76,8 @@ class Book extends Database
            :isbn,
            :description,
            :price,
-           :created_at
+           :created_at,
+           :category_id = :category_id
            )
         ", $columns);
             $id = $return->lastInsertId();

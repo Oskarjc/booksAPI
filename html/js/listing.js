@@ -76,6 +76,8 @@ $(document).ready(() => {
     getBooks()
         .done((data, text) => {
 
+
+            // --- books ---
             let books = JSON.parse(data);
 
             // Table erbij halen
@@ -145,7 +147,6 @@ $(document).ready(() => {
                 descriptiondiv.setAttribute('class', 'descriptionCol');
                 descriptiondiv.style.display = "none";
                 descriptiondiv.textContent = book.description;
-
 
                 tableRow.appendChild(titleCol);
                 tableRow.appendChild(authorCol);
@@ -237,16 +238,11 @@ $(document).ready(() => {
                     authorheader.append('Author:');
 
                     const authorvalue = document.createElement('p');
-                    const authorid = document.createElement('p');
-                    const authoridheader = document.createElement('p')
-                    authoridheader.append('Author ID: ');
-                    authorid.append(tableRow[i].querySelector('.author_iddiv').innerHTML);
                     authorvalue.append(tableRow[i].querySelector('.authorCol').innerHTML);
 
                     authordiv.appendChild(authorheader);
                     authordiv.appendChild(authorvalue);
-                    authordiv.appendChild(authoridheader);
-                    authordiv.appendChild(authorid);
+
 
                     // --- category ---
 
@@ -256,16 +252,11 @@ $(document).ready(() => {
                     categoryheader.append('Category:');
 
                     const categoryvalue = document.createElement('p');
-                    const categoryid = document.createElement('p');
-                    const categoryidheader = document.createElement('p');
-                    categoryidheader.append('Category ID: ');
-                    categoryid.append(tableRow[i].querySelector('.category_iddiv').innerHTML);
+
                     categoryvalue.append(tableRow[i].querySelector('.categoryCol').innerHTML);
 
                     categorydiv.appendChild(categoryheader);
                     categorydiv.appendChild(categoryvalue);
-                    categorydiv.appendChild(categoryidheader);
-                    categorydiv.appendChild(categoryid);
 
 
                     // --- isbn ---
@@ -441,20 +432,30 @@ $(document).ready(() => {
 
                         const authorLabel = document.createElement('label');
                         authorLabel.setAttribute('for', 'author');
-                        authorLabel.textContent = 'Author:';
+                        authorLabel.textContent = 'Author: ';
 
-                        const authorInput = document.createElement('input');
-                        authorInput.setAttribute('type', 'number');
-                        authorInput.setAttribute('name', 'author');
-                        authorInput.setAttribute('id', 'author');
-                        authorInput.setAttribute('class', 'form-control');
-                        authorInput.setAttribute('value', authorid.innerHTML);
-                        authorInput.setAttribute('min', 1);
 
-                        authorInput.required = true;
+                        getAuthors()
+                            .done((data, text) => {
 
-                        authorDiv.appendChild(authorLabel);
-                        authorDiv.appendChild(authorInput);
+                                let authors = JSON.parse(data);
+
+                                const authorInput = document.createElement('select');
+
+                                for (i = 0; i < authors.length; i++) {
+                                    let authorSelect = document.createElement('option');
+                                    authorSelect.textContent = authors[i].name;
+                                    authorSelect.setAttribute('value', authors[i].id)
+                                    authorInput.appendChild(authorSelect);
+                                }
+                                authorDiv.appendChild(authorLabel);
+                                authorDiv.appendChild(authorInput);
+
+
+                            })
+                            .fail((request, status, error) => {
+                                console.log(request);
+                            });
 
                         form.appendChild(authorDiv);
 
@@ -512,20 +513,33 @@ $(document).ready(() => {
                         const categoryDiv = document.createElement('div');
                         categoryDiv.setAttribute('class', 'form-group');
 
-                            const categoryLabel = document.createElement('label');
-                            categoryLabel.setAttribute('for', 'category_id');
-                            categoryLabel.textContent = 'Category:';
+                        const categoryLabel = document.createElement('label');
+                        categoryLabel.setAttribute('for', 'category_id');
+                        categoryLabel.textContent = 'Category: ';
 
-                            const categoryInput = document.createElement('input');
-                            categoryInput.setAttribute('type', 'number');
-                            categoryInput.setAttribute('name', 'category_id');
-                            categoryInput.setAttribute('id', 'category_id');
-                            categoryInput.setAttribute('class', 'form-control');
-                            categoryInput.setAttribute('value', categoryid.innerHTML);
-                            categoryInput.setAttribute('min', 1);
+                        // option variabelen voor edit book functie
 
-                        categoryDiv.appendChild(categoryLabel);
-                        categoryDiv.appendChild(categoryInput);
+                        getCategories()
+                            .done((data, text) => {
+
+                                let categories = JSON.parse(data);
+
+                                const categoryInput = document.createElement('select');
+
+                                for (i = 0; i < categories.length; i++) {
+                                    let categorySelect = document.createElement('option');
+                                    categorySelect.textContent = categories[i].name;
+                                    categorySelect.setAttribute('value', categories[i].id)
+                                    categoryInput.appendChild(categorySelect);
+                                }
+                                categoryDiv.appendChild(categoryLabel);
+                                categoryDiv.appendChild(categoryInput);
+
+
+                            })
+                            .fail((request, status, error) => {
+                                console.log(request);
+                            });
 
                         form.appendChild(categoryDiv);
 

@@ -31,6 +31,16 @@ class Book extends Database
                                       JOIN {$this->category_table} ON {$this->table_name}.category_id = {$this->category_table}.id ;");
     }
 
+    public function categories()
+    {
+        return $this->getAll("SELECT * FROM {$this->category_table}");
+    }
+
+    public function authors()
+    {
+        return $this->getAll("SELECT * FROM {$this->author_table}");
+    }
+
     public function one($id = 0)
     {
         return $this->getOne("SELECT * FROM {$this->table_name} WHERE {$this->primary_key} = :id;", ['id' => $id]);

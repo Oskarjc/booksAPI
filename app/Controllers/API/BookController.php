@@ -18,6 +18,24 @@ class BookController extends BaseController
             $this->renderJson(200, $books);
   }
 
+  public function getCategories() {
+
+      $bookModel = new Book();
+
+          $books = $bookModel->categories();
+
+            $this->renderJson(200, $books);
+  }
+
+  public function getAuthors() {
+
+      $bookModel = new Book();
+
+          $books = $bookModel->authors();
+
+            $this->renderJson(200, $books);
+  }
+
   public function deleteBook() {
 
       $bookModel = new Book();

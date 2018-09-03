@@ -8,6 +8,14 @@ const getBooks = () => {
 
 };
 
+const getCategories = () => {
+    return $.get(env.api + '?route=categories');
+}
+
+const getAuthors = () => {
+    return $.get(env.api + '?route=authors');
+}
+
 const deleteBook = (id) => {
     return $.post(env.api + '?route=delete', JSON.stringify(id))
 };

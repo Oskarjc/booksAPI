@@ -32,6 +32,16 @@ else if ($route === 'create' && $method === 'POST') {
     $bookController->createBook();
 }
 
+else if ($route === 'categories') {
+    $bookController = new BookController();
+    $bookController->getCategories();
+}
+
+else if ($route === 'authors') {
+    $bookController = new BookController();
+    $bookController->getAuthors();
+}
+
 else if ($route === 'update' && $method === 'POST') {
     $bookController = new BookController();
     $bookController->updateBook();

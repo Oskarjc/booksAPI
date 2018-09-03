@@ -440,13 +440,18 @@ $(document).ready(() => {
 
                                 let authors = JSON.parse(data);
 
-                                const authorInput = document.createElement('select');
+                                const authorInput = document.createElement('p');
+                                const authorSelectField = document.createElement('select');
+                                authorInput.setAttribute('id', 'author');
+                                authorInput.setAttribute('name', 'author');
+                                authorInput.appendChild(authorSelectField);
+
 
                                 for (i = 0; i < authors.length; i++) {
                                     let authorSelect = document.createElement('option');
                                     authorSelect.textContent = authors[i].name;
                                     authorSelect.setAttribute('value', authors[i].id)
-                                    authorInput.appendChild(authorSelect);
+                                    authorSelectField.appendChild(authorSelect);
                                 }
                                 authorDiv.appendChild(authorLabel);
                                 authorDiv.appendChild(authorInput);
@@ -524,13 +529,17 @@ $(document).ready(() => {
 
                                 let categories = JSON.parse(data);
 
-                                const categoryInput = document.createElement('select');
+                                const categoryInput = document.createElement('p');
+                                const categorySelectField = document.createElement('select');
+                                categoryInput.setAttribute('id', 'author');
+                                categoryInput.setAttribute('name', 'author');
+                                categoryInput.appendChild(categorySelectField);
 
                                 for (i = 0; i < categories.length; i++) {
                                     let categorySelect = document.createElement('option');
                                     categorySelect.textContent = categories[i].name;
                                     categorySelect.setAttribute('value', categories[i].id)
-                                    categoryInput.appendChild(categorySelect);
+                                    categorySelectField.appendChild(categorySelect);
                                 }
                                 categoryDiv.appendChild(categoryLabel);
                                 categoryDiv.appendChild(categoryInput);

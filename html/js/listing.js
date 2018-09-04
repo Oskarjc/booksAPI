@@ -350,7 +350,7 @@ $(document).ready(() => {
 
 
                     pagediv.append(bookdiv);
-                    pagediv.append(imagediv)
+                    pagediv.append(imagediv);
                     pagediv.append(idContainer);
 
 

@@ -16,19 +16,11 @@ class BookVoteController extends BaseController
         $book = $book->one($id);
 
         if ($book) {
-            $response = [
-                'status_code' => 200,
-                'status_message' => '',
-                'total' => 1,
-                'votes' => $book['votes']
-            ];
+            $this->renderJson(200, $foundbook['votes']);
+
         } else {
-            $response = [
-                'status_code' => 404,
-                'status_message' => 'Book ' . $id . ' not found',
-                'total' => 0,
-                'votes' => null
-            ];
+            $this->renderJson(404);
+
         }
 
         $this->renderJson($response);
@@ -46,22 +38,14 @@ class BookVoteController extends BaseController
         if ($foundbook) {
             $book->upVote($id);
             $foundbook = $book->one($id);
-            $response = [
-                'status_code' => 200,
-                'status_message' => 'DESTROY',
-                'total' => 0,
-                'votes' => $foundbook['votes']
-            ];
+            $this->renderJson(200, $foundbook['votes']);
+
         } else {
-            $response = [
-                'status_code' => 404,
-                'status_message' => 'Book ' . $id . ' not found',
-                'total' => 0,
-                'votes' => null
-            ];
+            $this->renderJson(404);
+
         }
 
-        $this->renderJson($response);
+
 
     }
 
@@ -75,19 +59,10 @@ class BookVoteController extends BaseController
         if ($foundbook) {
             $book->downVote($id);
             $foundbook = $book->one($id);
-            $response = [
-                'status_code' => 200,
-                'status_message' => 'DESTROY',
-                'total' => 0,
-                'votes' => $foundbook['votes']
-            ];
+            $this->renderJson(200, $foundbook['votes']);
+
         } else {
-            $response = [
-                'status_code' => 404,
-                'status_message' => 'Book ' . $id . ' not found',
-                'total' => 0,
-                'votes' => null
-            ];
+            $this->renderJson(404);
         }
 
         $this->renderJson($response);

@@ -88,12 +88,11 @@ const getErrorMessageForElement = (element) => {
 
 function upVote(id) {
     $.ajax({
-        url: "http://localhost/booksoop/api/?route=votes&id=" + id,
+        url: env.api + "?route=votes&id=" + id,
         type: "POST"
     }).done(function( data ) {
         if (data) {
-            response = $.parseJSON(data);
-            votes = response.votes;
+            votes = $.parseJSON(data);
             $(".vote-count").html(votes);
                         }
     });
@@ -101,12 +100,11 @@ function upVote(id) {
 
 function downVote(id) {
     $.ajax({
-        url: "http://localhost/booksoop/api/?route=votes&id=" + id,
+        url: env.api + "?route=votes&id=" + id,
         type: "DELETE"
     }).done(function( data ) {
         if (data) {
-            response = $.parseJSON(data);
-            votes = response.votes;
+            votes = $.parseJSON(data);
             $(".vote-count").html(votes);
         }
     });
@@ -114,12 +112,11 @@ function downVote(id) {
 
 function getVotes(id) {
     $.ajax({
-        url: "http://localhost/booksoop/api/?route=votes&id=" + id,
+        url: env.api + "?route=votes&id=" + id,
         type: "GET"
     }).done(function( data ) {
         if (data) {
-            response = $.parseJSON(data);
-            votes = response.votes;
+            votes = $.parseJSON(data);
             $(".vote-count").html(votes);
         }
     });

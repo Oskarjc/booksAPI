@@ -194,6 +194,7 @@ $(document).ready(() => {
                     votecount.setAttribute('data-id', datainput);
                     votecount.textContent = tableRow[i].querySelector('.votediv').innerHTML;
 
+
                     const idContainer = document.createElement('p');
                     idContainer.style.display = 'none';
                     idContainer.textContent = datainput;
@@ -362,6 +363,24 @@ $(document).ready(() => {
                     maindiv.appendChild(header);
                     maindiv.appendChild(votediv);
                     maindiv.appendChild(pagediv);
+
+                    $( document ).ready(function() {
+                        voteElement = $(".votes");
+                        if (voteElement){
+                            bookId = $(voteElement).find(".vote-count").data("id");
+                            if (bookId>0) {
+                                setInterval("getVotes(" + bookId + ")", 10000);
+                                $(voteElement).find(".up-vote").click(function () {
+                                    upVote(bookId);
+                                });
+                                $(voteElement).find(".down-vote").click(function () {
+                                    downVote(bookId);
+                                });
+                            }
+                        }
+
+
+                    });
 
                     deleteButton.addEventListener('click', (event) => {
 

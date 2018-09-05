@@ -55,7 +55,7 @@ abstract class BaseController
         include __DIR__ . '/../../app/Views/layout.php';
     }
 
-    public function renderJson($statusCode, $data) : void
+    public function renderJson($statusCode, $data = null) : void
     {
         http_response_code($statusCode);
         if ($data) {

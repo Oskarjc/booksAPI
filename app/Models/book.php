@@ -54,8 +54,8 @@ class Book extends Database
             $columns['updated_at'] = date("Y-m-d H:i:s");
             $this->execute("
          UPDATE {$this->table_name} SET
-         author_id = :author_id,
            title = :title,
+           author_id = :author_id,
            isbn = :isbn,
            description = :description,
            price = :price,
@@ -67,10 +67,10 @@ class Book extends Database
             //insert
             $columns['created_at'] = date("Y-m-d H:i:s");
             $return = $this->execute("
-         INSERT INTO {$this->table_name} (category_id,author_id,title,isbn,description,price,created_at)
+         INSERT INTO {$this->table_name} (title,author_id,isbn,description,price,created_at,category_id)
          VALUES(
-          :author_id,
            :title,
+           :author_id,
            :isbn,
            :description,
            :price,

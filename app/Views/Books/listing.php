@@ -17,20 +17,7 @@
             <th>Price</th>
         </tr>
 
-  <!--        --><?php /*
-        foreach ($viewModel['books'] as $id => $book) {
 
-            echo "<tr onclick=\"window.location = '?route=show&id={$book['id']}'\">
-
-        <td><a href=\"?route=show&id={$book['id']}\">{$book['title']}</a></td>
-        <td class='d-none d-sm-table-cell' >{$book['author_id']}</td>
-        <td class='d-none d-sm-table-cell' >{$book['isbn']}</td>
-        <td>&euro;{$book['price']}</td>
-
-        </tr>";
-
-        }
-        */?>
 
 
 
@@ -41,16 +28,21 @@
 </div>
 
 </div>
+
+
+    <?php if ($viewModel['profile']) {?>
+        <p>
+            <button onclick="window.location ='?route=create'" type="button" class="btn btn-success">New book</button>
+
+        </p>
+
+    <?php }?>
+
 </div>
 
 
-<?php if ($viewModel['profile']) {?>
-    <p>
-        <button onclick="window.location ='?route=create'" type="button" class="btn btn-success">New book</button>
-
-    </p>
-
-<?php }?>
-
 <script src="js/listing.js"></script>
+<script src="js/update-book.js"></script>
+<script src="js/savebook.js"></script>
+<script src="js/details.js"></script>
 

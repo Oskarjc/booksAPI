@@ -56,7 +56,7 @@ try {
         $bookController->edit($id);
     } elseif ($route == "edit" && $method == "POST") {
         $bookController = new BookController();
-        $bookController->Update($id);
+        $bookController->update($id);
     } elseif ($route == "create" && $method == "GET") {
         $bookController = new BookController();
         $bookController->create();

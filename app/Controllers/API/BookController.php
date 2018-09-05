@@ -57,12 +57,12 @@ class BookController extends BaseController
 
       $fields = [
 
-          'category_id' => $book->category_id,
-          'author_id' => $book->author_id,
           'title' => $book->title,
+          'author_id' => $book->author_id,
           'isbn' => $book->isbn,
           'description' => $book->description,
-          'price' => $book->price
+          'price' => $book->price,
+          'category_id' => $book->category_id
 
       ];
 

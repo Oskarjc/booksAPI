@@ -17,13 +17,7 @@
             <th>Price</th>
         </tr>
 
-
-
-
-
     </table>
-
-
 
 </div>
 
@@ -32,7 +26,7 @@
 
     <?php if ($viewModel['profile']) {?>
         <p>
-            <button onclick="window.location ='?route=create'" type="button" class="btn btn-success">New book</button>
+            <button onclick="window.location ='?route=create'" type="button" class="btn btn-success" id="newBookButton">New book</button>
 
         </p>
 
@@ -45,4 +39,5 @@
 <script src="js/update-book.js"></script>
 <script src="js/savebook.js"></script>
 <script src="js/details.js"></script>
+<script src="js/new-book.js"></script>
 

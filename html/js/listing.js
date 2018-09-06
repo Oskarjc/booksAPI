@@ -77,6 +77,14 @@ $(document).ready(() => {
 
                 getDetails();
 
+               const newBookButton = document.getElementById('newBookButton');
+
+               newBookButton.addEventListener('click', (event) => {
+
+                   newBook();
+
+                   });
+
         })
         .fail((request, status, error) => {
             console.log(request);
